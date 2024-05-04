@@ -1,0 +1,78 @@
+* {
+    background: #141414;
+
+}
+
+/* header styling */
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 0rem 3rem 0rem 0rem;
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+.navigation-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    gap: 1.5rem;
+}
+
+.secondary-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    gap: 1.5rem;
+}
+
+.navigation-menu-item, .caret {
+    color: #ececec;
+    font-family: "Figtree", sans-serif;
+    font-size: 14px;
+    transition: color 0.5s ease
+}
+
+.navigation-menu-item:hover {
+    color: rgb(173, 173, 173); /* Changes background to grey on hover */
+}
+
+
+.search-icon {
+    width: 50px;  /* Set the width of the image */
+    height: 50px; /* Set the height of the image */
+    border: none;
+    cursor: default;
+}
+
+.searchTab, .account-dropdown-button {
+    border: none;
+    background: none;
+    outline: none; /* Disables the focus outline */
+}
+
+.netflix-logo {
+    width: 100px;
+    height: 50px;
+}
+
+.account-icon {
+    width: 50px;  /* Set the width of the image */
+    height: 50px; /* Set the height of the image */
+    border: none;
+    cursor: default;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* Main styling */
+
