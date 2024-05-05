@@ -33,6 +33,12 @@
     gap: 1.5rem;
 }
 
+.search-container {
+    position: relative;
+    width: 300px; /* or any width */
+}
+
+
 .navigation-menu-item, .caret {
     color: #ececec;
     font-family: "Figtree", sans-serif;
@@ -44,18 +50,63 @@
     color: rgb(173, 173, 173); /* Changes background to grey on hover */
 }
 
-
-.search-icon {
-    width: 50px;  /* Set the width of the image */
-    height: 50px; /* Set the height of the image */
-    border: none;
-    cursor: default;
-}
-
-.searchTab, .account-dropdown-button {
+.searchTab {
     border: none;
     background: none;
     outline: none; /* Disables the focus outline */
+    position: absolute;
+    right: 0;
+    top: -17px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    transition: right 0.5s ease;
+}
+
+.search-icon {
+    width: 35px;  /* Set the width of the image */
+    height: 35px; /* Set the height of the image */
+    border: none;
+    cursor: default;
+    background: none;
+}
+
+.search-bar {
+    width: 0;
+    height: 15px;
+    border: 1px solid #ececec;
+    color: #ececec;
+    font-family: "Figtree", sans-serif;
+    font-size: 14px;
+    padding: 10px 40px 10px 35px; 
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    transition: opacity 1s ease, width 0.5s ease;
+    transform: translateX(-50%);
+    right: 0;
+    left: 50%;
+    top: -17px;
+    
+}
+
+.search-bar.active {
+    width: 14rem;
+    visibility: visible;
+    opacity: 1;
+    right: 100%; 
+}
+
+.search-bar.active + .searchTab {
+    right: calc(100% - 44px); 
+}
+
+.account-dropdown-button {
+    width: 50px;  /* Set the width of the image */
+    height: 50px; /* Set the height of the image */
+    border: none;
+    cursor: pointer;
+    background: none;
 }
 
 .netflix-logo {

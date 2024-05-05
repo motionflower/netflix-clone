@@ -23,9 +23,12 @@
             <a href="mylist.html" class="navigation-menu-item">My List</a>
         </div>
         <div class="secondary-navigation">
-            <button class="searchTab">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/VisualEditor_-_Icon_-_Search-big_-_white.svg/1200px-VisualEditor_-_Icon_-_Search-big_-_white.svg.png" alt="Search Icon" class="search-icon">
-            </button>
+            <div class="search-container">
+                <input type="text" id="searchBar" class="search-bar" placeholder="Titles, people, genres">
+                <button class="searchTab" onclick="toggleSearch()">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/VisualEditor_-_Icon_-_Search-big_-_white.svg/1200px-VisualEditor_-_Icon_-_Search-big_-_white.svg.png" alt="Search Icon" class="search-icon">
+                </button>
+            </div>                   
             <a href="kids.html" class="navigation-menu-item">Kids</a>
             <button class="account-dropdown-button">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Netflix-avatar.png/1200px-Netflix-avatar.png" alt="Account Icon" class="account-icon">
@@ -33,6 +36,5 @@
             <span class="caret">▼</span>
         </div>
     </div>
-
 </body>
 </html>
