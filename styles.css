@@ -56,7 +56,7 @@
     outline: none; /* Disables the focus outline */
     position: absolute;
     right: 0;
-    top: -17px;
+    top: -18px;
     border: none;
     background: transparent;
     cursor: pointer;
@@ -78,7 +78,7 @@
     color: #ececec;
     font-family: "Figtree", sans-serif;
     font-size: 14px;
-    padding: 10px 40px 10px 35px; 
+    padding: 10px 40px 10px 45px; 
     visibility: hidden;
     opacity: 0;
     position: absolute;
@@ -98,7 +98,7 @@
 }
 
 .search-bar.active + .searchTab {
-    right: calc(100% - 44px); 
+    right: calc(100% - 40px); 
 }
 
 .account-dropdown-button {
