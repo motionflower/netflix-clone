@@ -3,48 +3,79 @@ function toggleSearch() {
     searchBar.classList.toggle('active');
 }
 
-// API implementation
+
+let type = '';
+
+document.addEventListener('DOMContentLoaded', function() {
+    const genreOptions = document.getElementById('genreList').children;
+
+    if (window.location.href.includes('movies.html')) {
+      type = 'movie';
+  } else if (window.location.href.includes('tvshows.html')) {
+      type = 'tv';
+  }
+
+    Array.from(genreOptions).forEach(option => {
+      option.addEventListener('click', function() {
+        const genreId = this.getAttribute('data-genre-id');
+        fetchData('', genreId);  // fetchData will handle clearing and updating the movie display
+        console.log(this.textContent); // Log the genre name
+        console.log(genreId); // Log the genre ID
+        });
+    });
+});
 
 function fetchData(keyword, genreId) {
   const apiKey = '9abd94e670c7ca7d0c5fb3d68f95604d';
   const encodedKeyword = encodeURIComponent(keyword);
-  // Adjusted URL for search/movie with genre filtering
-  const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodedKeyword}&with_genres=${genreId}`;
-
-  console.log("URL being fetched:", url); // Debugging to see what URL is used
+  const url = `https://api.themoviedb.org/3/discover/${type}?api_key=${apiKey}&with_genres=${genreId}&query=${encodedKeyword}`;
 
   fetch(url)
-    .then(response => response.json())
-    .then(data => {
-      if (data.results.length > 0) {
-        console.log(data.results); // This contains the array of movies
-      } else {
-        console.log('No results found');
-      }
-    })
-    .catch(error => console.error('Error:', error));
+      .then(response => response.json())
+      .then(data => {
+          displayMovies(data.results);  // Pass the movie data to displayMovies
+      })
+      .catch(error => console.error('Error:', error));
 }
 
-// Example call: Search for 'superman' movies in the Action genre
-fetchData('superman', 28); // 28 is the genre ID for Action
 
+function displayMovies(movies) {
+  const moviesContainer = document.getElementById('moviesContainer');
+  moviesContainer.innerHTML = ''; // Clear existing content before displaying new movies
 
-function fetchMovieGenres() {
-  const apiKey = '9abd94e670c7ca7d0c5fb3d68f95604d';
-  const url = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`;
+  movies.forEach(movie => {
+      const movieElem = document.createElement('div');
+      movieElem.classList.add('movie');
 
-  fetch(url)
-    .then(response => response.json())
-    .then(data => {
-      const genresMap = new Map();
-      data.genres.forEach(genre => {
-        genresMap.set(genre.id, genre.name);
-      });
-      console.log(genresMap); // This prints out the map of genres with their IDs
-    })
-    .catch(error => console.error('Error:', error));
+      const imageContainer = document.createElement('div');
+      imageContainer.classList.add('image-container');
+
+      const img = document.createElement('img');
+      const imageUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+      img.src = imageUrl;
+      img.alt = movie.title; // Good for accessibility and SEO
+      img.onerror = function() {
+          this.src = 'path/to/default/image.jpg'; // Fallback image
+      };
+
+      const description = document.createElement('p');
+      description.classList.add('description');
+      description.textContent = truncateText(movie.overview, 150); // Apply truncation function
+
+      const rating = document.createElement('span');
+      rating.classList.add('rating');
+      rating.textContent = `Rating: ${movie.vote_average.toFixed(1)} / 10`; // Truncate rating to 1 digit after the dot
+      rating.style.display = 'block'; // Make it a block element to appear on a new line
+
+      imageContainer.appendChild(img);
+      imageContainer.appendChild(description);
+      imageContainer.appendChild(rating); 
+      movieElem.appendChild(imageContainer);
+      moviesContainer.appendChild(movieElem);
+  });
 }
 
-// Example call: Search for most popular movies in the specified genre
-fetchMovieGenres(); // Fetch the movie genres first
+function truncateText(text, maxLength) {
+  return text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
+}
 

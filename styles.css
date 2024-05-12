@@ -138,7 +138,6 @@ a {
 }
 
 /* Main styling */
-
 .main-container {
     color: #ececec;
     font-family: "Figtree", sans-serif;
@@ -151,7 +150,8 @@ a {
 }
 
 .custom-select {
-    position: relative;
+    position: sticky;
+    z-index: 10;
     border: 1px solid #ececec;
     cursor: pointer;
     width: 120px;
@@ -175,7 +175,7 @@ a {
     list-style-type: none;
     padding: 0;
     margin: 0;
-    width: 1000px;
+    width: 500px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     max-height: 300px; /* Set a maximum height */
     opacity: 0; /* Initially hidden */
@@ -186,6 +186,7 @@ a {
     flex-wrap: wrap; /* Allow wrapping */
     overflow-x: hidden; /* Hide horizontal overflow */
     overflow-y: auto; /* Enable vertical scrolling */
+    gap: 0rem;
 }
 
 .select-options li {
@@ -200,4 +201,70 @@ a {
 .custom-select:focus-within .select-options {
     opacity: 1; /* Show options when parent is focused */
     visibility: visible;
+}
+
+/* movies styling  */
+#moviesContainer .movie {
+    display: inline-block;
+    margin: 10px;
+    width: 200px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+}
+
+#moviesContainer .movie .image-container {
+    position: relative;
+}
+
+#moviesContainer .movie img {
+    width: 100%;
+    height: auto;
+    transition: filter 0.3s ease;
+}
+
+#moviesContainer .movie .description {
+    position: absolute;
+    top: 0px;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+    color: white;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    transition: opacity 0.3s ease;
+    opacity: 0; /* Hidden by default */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#moviesContainer .movie:hover img {
+    filter: blur(5px);
+    width: 100%;
+}
+
+#moviesContainer .movie:hover .description {
+    opacity: 1; /* Show description on hover */
+}
+
+#moviesContainer .movie .rating {
+    font-weight: bold;
+    color: #FFF;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 5px 10px;
+    position: absolute;
+    bottom: 10px; 
+    left: 10px; 
+    border-radius: 5px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#moviesContainer .movie:hover .rating {
+    opacity: 1;
+}
+
+#moviesContainer {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
 }
