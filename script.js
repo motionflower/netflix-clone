@@ -58,6 +58,10 @@ function displayMovies(movies) {
           this.src = 'path/to/default/image.jpg'; // Fallback image
       };
 
+      const title = document.createElement('h2');
+      title.classList.add('movie-title');
+      title.textContent = movie.title;
+
       const description = document.createElement('p');
       description.classList.add('description');
       description.textContent = truncateText(movie.overview, 150); // Apply truncation function
@@ -67,6 +71,7 @@ function displayMovies(movies) {
       rating.textContent = `Rating: ${movie.vote_average.toFixed(1)} / 10`; // Truncate rating to 1 digit after the dot
       rating.style.display = 'block'; // Make it a block element to appear on a new line
 
+      imageContainer.appendChild(title);
       imageContainer.appendChild(img);
       imageContainer.appendChild(description);
       imageContainer.appendChild(rating); 

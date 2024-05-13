@@ -217,16 +217,44 @@ a {
     position: relative;
 }
 
+#moviesContainer .movie:hover .image-container {
+    opacity: 1;
+    /* background: rgba(0, 0, 0, 0.7);  */
+}
+
 #moviesContainer .movie img {
     width: 100%;
     height: auto;
     transition: filter 0.3s ease;
 }
 
+#moviesContainer .movie .movie-title {
+    position: absolute;
+    top: -15px; /* Adjust this if you want a different vertical position */
+    width: 100%;
+    background: rgba(0, 0, 0, 0); /* Semi-transparent overlay */
+    color: white;
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 16px; /* Adjust size as needed */
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.3s ease;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    z-index: 10; /* Make sure this is higher than other elements within the same container */
+}
+
+#moviesContainer .movie:hover .movie-title {
+    opacity: 1; /* Show title on hover */
+}
+
 #moviesContainer .movie .description {
     position: absolute;
-    top: 0px;
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+    font-family: "Figtree", sans-serif;
+    font-size: 18px;
+    top: 30px;
+    background: rgba(0, 0, 0, 0);
     color: white;
     width: 100%;
     padding: 10px;
@@ -238,7 +266,8 @@ a {
 }
 
 #moviesContainer .movie:hover img {
-    filter: blur(5px);
+    filter: blur(4px);
+    filter: brightness(0.2);
     width: 100%;
 }
 
@@ -249,7 +278,7 @@ a {
 #moviesContainer .movie .rating {
     font-weight: bold;
     color: #FFF;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0);
     padding: 5px 10px;
     position: absolute;
     bottom: 10px; 
@@ -266,5 +295,9 @@ a {
 #moviesContainer {
     position: relative;
     width: 100%;
+    height: 320px; 
     overflow: hidden;
+    display: flex;          /* Use flexbox to lay out children inline */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: thin;  /* Optional: Thinner scrollbar (supported in Firefox) */
 }
